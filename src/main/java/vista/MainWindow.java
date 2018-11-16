@@ -5,13 +5,9 @@
  */
 package vista;
 
-import java.awt.Color;
-import javax.swing.JButton;
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
-import javax.swing.SpringLayout;
 import modelo.ProcesadorDeImagenes;
 
 /**
