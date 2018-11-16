@@ -10,19 +10,20 @@ package modelo;
  * @author Kev
  */
 public class ModeloImagen {
+
     private String ruta;
-    
-    public ModeloImagen(String ruta){
+
+    public ModeloImagen(String ruta) {
         this.ruta = ruta;
     }
 
     public String getRuta() {
         return ruta;
-    }    
+    }
 
     @Override
     public String toString() {
         return ruta;
     }
-    
+
 }

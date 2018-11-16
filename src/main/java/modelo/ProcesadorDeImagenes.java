@@ -13,17 +13,17 @@ import java.util.List;
  * @author Kev
  */
 public class ProcesadorDeImagenes {
-        
+
     private final List<ModeloImagen> imagenes;
-    
+
     public ProcesadorDeImagenes() {
         imagenes = new ArrayList<>();
     }
-        
+
     public boolean agregar(ModeloImagen nImagen) {
         return imagenes.add(nImagen);
     }
-    
+
     public boolean analizar() {
         boolean resultado = false;
         for (ModeloImagen imagen : imagenes) {
@@ -32,5 +32,5 @@ public class ProcesadorDeImagenes {
         }
         return resultado;
     }
-    
+
 }

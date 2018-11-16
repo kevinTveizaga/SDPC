@@ -13,13 +13,13 @@ import static org.junit.Assert.*;
  * @author Kev
  */
 public class ProcesadorDeImagenesTest {
-    
+
     private ModeloImagen pImagen;
     private ModeloImagen sImagen;
     private ModeloImagen tImagen;
     private ModeloImagen cImagen;
     private ProcesadorDeImagenes procesador;
-    
+
     @Before
     public void setUp() {
         pImagen = new ModeloImagen("1");
@@ -49,5 +49,5 @@ public class ProcesadorDeImagenesTest {
         procesador.agregar(cImagen);
         assertTrue(procesador.analizar());
     }
-    
+
 }
