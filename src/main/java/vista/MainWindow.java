@@ -5,8 +5,11 @@
  */
 package vista;
 
+import java.awt.Color;
+import java.awt.GridBagConstraints;
+import java.awt.GridLayout;
 import javax.swing.JFrame;
-import javax.swing.JLayeredPane;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import modelo.ProcesadorDeImagenes;
 
@@ -15,10 +18,10 @@ import modelo.ProcesadorDeImagenes;
  * @author Kev
  */
 public class MainWindow {
-    
+
     private static final String NOMBRE_APLICACION = "Sistema de deteccion de puntos calientes";
     private static ProcesadorDeImagenes procesador;
-    
+
     public static void main(String[] args) {
         JFrame frame = new JFrame(NOMBRE_APLICACION);
         frame.setSize(500, 500);
@@ -30,10 +33,33 @@ public class MainWindow {
     }
 
     private static void initComponents(JFrame frame) {
-        JLayeredPane mainPanel = new JLayeredPane();
-        mainPanel.setBounds(0,0,500,500);
-        JPanel botonesPanel = new PanelBotones(procesador);
-        mainPanel.add(botonesPanel, 1, 1);
-        frame.add(mainPanel);        
+        JPanel main = new JPanel(new GridLayout());
+        main.setAutoscrolls(true);
+        main.setBackground(Color.red);
+
+        GridBagConstraints limitesBotones = new GridBagConstraints();
+        limitesBotones.gridx = 0;
+        limitesBotones.gridy = 1;
+        limitesBotones.gridheight = 100;
+        limitesBotones.gridwidth = 200;
+        limitesBotones.fill = GridBagConstraints.BOTH;
+
+        GridBagConstraints limitesImagen = new GridBagConstraints();
+        limitesImagen.gridx = 1;
+        limitesImagen.gridy = 0;
+        limitesImagen.gridheight = 400;
+        limitesImagen.gridwidth = 400;
+        limitesImagen.fill = GridBagConstraints.BOTH;
+
+        JPanel panelImagen = new JPanel();
+        JLabel imagen = new JLabel();
+        JPanel botones = new PanelBotones(procesador, imagen);
+
+        panelImagen.add(imagen);
+
+        main.add(botones, limitesBotones);
+        main.add(panelImagen, limitesImagen);
+
+        frame.add(main);
     }
 }
