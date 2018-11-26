@@ -5,6 +5,9 @@
  */
 package vista;
 
+import controlador.AccionAgregar;
+import controlador.AccionAnalizar;
+import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -18,18 +21,16 @@ import modelo.ProcesadorDeImagenes;
  */
 public class PanelBotones extends JPanel {
 
-    private static final int PREF_H = 300;
-    private static final int PREF_W = 300;
-
-    public PanelBotones(ProcesadorDeImagenes procesador, JLabel imagen) {
-        super.setLayout(new SpringLayout());
-        super.setSize(new Dimension(PREF_W, PREF_H));
-
+    public PanelBotones(ProcesadorDeImagenes procesador, JLabel imagen) {       
         JButton botonAbrir = new JButton("agregar");
         botonAbrir.setToolTipText("agregar imagenes");
         botonAbrir.addActionListener(new AccionAgregar(procesador, imagen));
-
+        JButton botonAnalizar = new JButton("analizar");
+        botonAnalizar.setToolTipText("analizar imagenes");
+        botonAnalizar.addActionListener(new AccionAnalizar(procesador));
+        
         super.add(botonAbrir);
+        super.add(botonAnalizar);
     }
 
 }

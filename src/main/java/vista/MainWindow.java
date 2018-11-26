@@ -6,8 +6,10 @@
 package vista;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
-import java.awt.GridLayout;
+import java.awt.GridBagLayout;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -24,7 +26,9 @@ public class MainWindow {
 
     public static void main(String[] args) {
         JFrame frame = new JFrame(NOMBRE_APLICACION);
-        frame.setSize(500, 500);
+        frame.setPreferredSize(new Dimension(1000, 600));
+        frame.setMinimumSize(frame.getPreferredSize());
+        frame.pack();
         procesador = new ProcesadorDeImagenes();
         initComponents(frame);
         frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
@@ -33,33 +37,27 @@ public class MainWindow {
     }
 
     private static void initComponents(JFrame frame) {
-        JPanel main = new JPanel(new GridLayout());
-        main.setAutoscrolls(true);
-        main.setBackground(Color.red);
-
-        GridBagConstraints limitesBotones = new GridBagConstraints();
-        limitesBotones.gridx = 0;
-        limitesBotones.gridy = 1;
-        limitesBotones.gridheight = 100;
-        limitesBotones.gridwidth = 200;
-        limitesBotones.fill = GridBagConstraints.BOTH;
-
-        GridBagConstraints limitesImagen = new GridBagConstraints();
-        limitesImagen.gridx = 1;
-        limitesImagen.gridy = 0;
-        limitesImagen.gridheight = 400;
-        limitesImagen.gridwidth = 400;
-        limitesImagen.fill = GridBagConstraints.BOTH;
-
+        JPanel main = new JPanel(new GridBagLayout());
         JPanel panelImagen = new JPanel();
         JLabel imagen = new JLabel();
-        JPanel botones = new PanelBotones(procesador, imagen);
-
+        JPanel panelBotones = new PanelBotones(procesador, imagen);
         panelImagen.add(imagen);
-
-        main.add(botones, limitesBotones);
+        
+        GridBagConstraints limitesBotones = new GridBagConstraints();
+        limitesBotones.weightx = 0.5;
+        limitesBotones.fill = GridBagConstraints.VERTICAL;
+        limitesBotones.gridx = 0;
+        limitesBotones.gridy = 0;
+        
+        GridBagConstraints limitesImagen = new GridBagConstraints();
+        limitesImagen.weightx = 0.5;
+        limitesImagen.fill = GridBagConstraints.BOTH;
+        limitesImagen.gridx = 1;
+        limitesImagen.gridy = 0;
+        
+        main.add(panelBotones, limitesBotones);
         main.add(panelImagen, limitesImagen);
-
+        
         frame.add(main);
     }
 }

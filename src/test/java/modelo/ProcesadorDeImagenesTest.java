@@ -14,40 +14,14 @@ import static org.junit.Assert.*;
  */
 public class ProcesadorDeImagenesTest {
 
-    private ModeloImagen pImagen;
-    private ModeloImagen sImagen;
-    private ModeloImagen tImagen;
-    private ModeloImagen cImagen;
     private ProcesadorDeImagenes procesador;
 
     @Before
     public void setUp() {
-        pImagen = new ModeloImagen("1");
-        sImagen = new ModeloImagen("2");
-        tImagen = new ModeloImagen("3");
-        cImagen = new ModeloImagen("4");
+    
         procesador = new ProcesadorDeImagenes();
     }
 
-    /**
-     * Test of agregar method, of class ProcesadorDeImagenes.
-     */
-    @org.junit.Test
-    public void testAgregar() {
-        boolean result = procesador.agregar(pImagen);
-        assertTrue(result);
-    }
 
-    /**
-     * Test of analizar method, of class ProcesadorDeImagenes.
-     */
-    @org.junit.Test
-    public void testAnalizar() {
-        procesador.agregar(pImagen);
-        procesador.agregar(sImagen);
-        procesador.agregar(tImagen);
-        procesador.agregar(cImagen);
-        assertTrue(procesador.analizar());
-    }
 
 }
