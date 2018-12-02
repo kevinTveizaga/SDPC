@@ -10,8 +10,11 @@ import java.util.List;
 import org.bytedeco.javacpp.opencv_core.IplImage;
 import static org.bytedeco.javacpp.opencv_core.cvCreateImage;
 import static org.bytedeco.javacpp.opencv_core.cvGetSize;
-import static org.bytedeco.javacpp.opencv_imgcodecs.*;
-
+import static org.bytedeco.javacpp.opencv_core.cvInRangeS;
+import static org.bytedeco.javacpp.opencv_core.cvScalar;
+import static org.bytedeco.javacpp.opencv_imgcodecs.cvConvertImage;
+import static org.bytedeco.javacpp.opencv_imgcodecs.cvLoadImage;
+import static org.bytedeco.javacpp.opencv_imgproc.COLOR_BGR2HSV;
 /**
  *
  * @author Kev
@@ -28,13 +31,15 @@ public class ProcesadorDeImagenes {
         return imagenes.add(pathImagen);
     }
 
-    public boolean analizar() {
-        boolean resultado = false;
+    public IplImage analizar() {
+        IplImage resultado = new IplImage();
         for (String current : imagenes) {
             IplImage img = cvLoadImage(current);
-            IplImage imgThreshold = cvCreateImage(cvGetSize(img), 8,1);
+            IplImage imgResult = cvCreateImage(cvGetSize(img), 8, 1);
+            resultado = cvCreateImage(cvGetSize(img), 8, 1);
+            cvConvertImage(img, resultado, COLOR_BGR2HSV);
+            cvInRangeS(resultado, cvScalar(253,188,7,0),cvScalar(255,247,0,0),resultado);        
         }
         return resultado;
-    }
-
+    }   
 }

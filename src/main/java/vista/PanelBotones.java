@@ -27,7 +27,7 @@ public class PanelBotones extends JPanel {
         botonAbrir.addActionListener(new AccionAgregar(procesador, imagen));
         JButton botonAnalizar = new JButton("analizar");
         botonAnalizar.setToolTipText("analizar imagenes");
-        botonAnalizar.addActionListener(new AccionAnalizar(procesador));
+        botonAnalizar.addActionListener(new AccionAnalizar(procesador,imagen));
         
         super.add(botonAbrir);
         super.add(botonAnalizar);

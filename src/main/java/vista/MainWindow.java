@@ -5,15 +5,18 @@
  */
 package vista;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import javax.swing.JButton;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import modelo.ProcesadorDeImagenes;
+import org.bytedeco.javacpp.Loader;
+import org.bytedeco.javacpp.opencv_core;
 
 /**
  *
@@ -24,7 +27,8 @@ public class MainWindow {
     private static final String NOMBRE_APLICACION = "Sistema de deteccion de puntos calientes";
     private static ProcesadorDeImagenes procesador;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) {     
+      
         JFrame frame = new JFrame(NOMBRE_APLICACION);
         frame.setPreferredSize(new Dimension(1000, 600));
         frame.setMinimumSize(frame.getPreferredSize());
@@ -37,6 +41,21 @@ public class MainWindow {
     }
 
     private static void initComponents(JFrame frame) {
+         try {
+            Loader.load(opencv_core.class);
+        } catch (UnsatisfiedLinkError e) {
+             try {
+                 String path = Loader.cacheResource(opencv_core.class, "windows-x86_64/jniopencv_core.dll").getPath();
+                 try {
+                     new ProcessBuilder("c:/Users/Kevo/Downloads/depends.exe", path).start().waitFor();
+                 } catch (InterruptedException ex) {
+                     Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+                 }
+             } catch (IOException ex) {
+                 Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+             }
+        }
+        
         JPanel main = new JPanel(new GridBagLayout());
         JPanel panelImagen = new JPanel();
         JLabel imagen = new JLabel();
