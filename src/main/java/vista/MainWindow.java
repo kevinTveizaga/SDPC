@@ -40,22 +40,7 @@ public class MainWindow {
         frame.setVisible(true);
     }
 
-    private static void initComponents(JFrame frame) {
-         try {
-            Loader.load(opencv_core.class);
-        } catch (UnsatisfiedLinkError e) {
-             try {
-                 String path = Loader.cacheResource(opencv_core.class, "windows-x86_64/jniopencv_core.dll").getPath();
-                 try {
-                     new ProcessBuilder("c:/Users/Kevo/Downloads/depends.exe", path).start().waitFor();
-                 } catch (InterruptedException ex) {
-                     Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
-                 }
-             } catch (IOException ex) {
-                 Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
-             }
-        }
-        
+    private static void initComponents(JFrame frame) {      
         JPanel main = new JPanel(new GridBagLayout());
         JPanel panelImagen = new JPanel();
         JLabel imagen = new JLabel();
