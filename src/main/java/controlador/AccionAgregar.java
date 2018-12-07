@@ -23,7 +23,7 @@ public class AccionAgregar implements ActionListener {
     private final JFileChooser fileChooser;
     private final ProcesadorDeImagenes proc;
     private final JLabel imagen;
-    
+
     public AccionAgregar(ProcesadorDeImagenes procesador, JLabel imagen) {
         fileChooser = new JFileChooser();
         proc = procesador;

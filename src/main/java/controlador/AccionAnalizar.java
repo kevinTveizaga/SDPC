@@ -25,7 +25,7 @@ public class AccionAnalizar implements ActionListener {
 
     ProcesadorDeImagenes proc;
     JLabel img;
-    
+
     public AccionAnalizar(ProcesadorDeImagenes procesador, JLabel imagen) {
         proc = procesador;
         img = imagen;
@@ -42,7 +42,7 @@ public class AccionAnalizar implements ActionListener {
         OpenCVFrameConverter.ToIplImage grabberConverter = new OpenCVFrameConverter.ToIplImage();
         Java2DFrameConverter paintConverter = new Java2DFrameConverter();
         Frame frame = grabberConverter.convert(src);
-        return paintConverter.getBufferedImage(frame,1);
+        return paintConverter.getBufferedImage(frame, 1);
     }
-    
+
 }
